@@ -3,12 +3,33 @@ import java.security.*;
 import java.util.Arrays;
 
 class Main {
+  public static String[][] rainbowbtable = new String[2][2000];
 
   public static void main(String[] args) {
 
-    reductionFunction("29c3eea3f305d6b823f562ac4be35217", 0);
+
+    generateRainbowtable();
+
   }
 
+
+  /**
+   * Fills the Rainbowbeatable.
+   */
+  private static void generateRainbowtable() {
+    for (int i = 0; i <= 1; i++) {
+      rainbowbtable[0][0] = pwGenerator(i);
+
+      String actualItem = rainbowbtable[0][0];
+      for (int j = 0; j <=20 ; j++) {
+        actualItem = callculateMd5(actualItem);
+        System.out.println(actualItem);
+        actualItem = reductionFunction(actualItem, j);
+        System.out.println(actualItem);
+      }
+      rainbowbtable[0][i] = actualItem;
+    }
+  }
 
 
   /**
@@ -33,20 +54,17 @@ class Main {
     BigInteger step = BigInteger.valueOf(stufe);
     BigInteger arrLength = BigInteger.valueOf(signs.length);
 
-    //TODO: Gegebener HAshwert als natürliche Zahl.
-    BigInteger hashNumber = new BigInteger(hash);
+    BigInteger hashNumber = new BigInteger(hash,16);
 
-
-    hashNumber.add(step);
+    hashNumber = hashNumber.add(step);
 
     for (int i = 6; i >= 0; i--) {
 
-      char toset = (char) hashNumber.mod(arrLength).intValue();
+      char toset = signs[hashNumber.mod(arrLength).intValue()];
       output.setCharAt(i, toset);
 
       hashNumber = hashNumber.divide(arrLength);
     }
-
     return output.toString();
   }
 
