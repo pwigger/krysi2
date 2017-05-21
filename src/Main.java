@@ -9,7 +9,15 @@ class Main {
 
 
     generateRainbowtable();
+    printTable(15);
 
+  }
+
+  private static void printTable(int i) {
+    for (int j = 0; j < i; j++) {
+      System.out.println(rainbowbtable[0][j] +"   "+rainbowbtable[1][j]);
+
+    }
   }
 
 
@@ -17,17 +25,17 @@ class Main {
    * Fills the Rainbowbeatable.
    */
   private static void generateRainbowtable() {
-    for (int i = 0; i <= 1; i++) {
-      rainbowbtable[0][0] = pwGenerator(i);
+    for (int i = 0; i < 2000; i++) {
+      rainbowbtable[0][i] = pwGenerator(i);
 
-      String actualItem = rainbowbtable[0][0];
-      for (int j = 0; j <=20 ; j++) {
+      String actualItem = rainbowbtable[0][i];
+      for (int j = 0; j < 2000; j++) {
         actualItem = callculateMd5(actualItem);
-        System.out.println(actualItem);
+//        System.out.println(actualItem);
         actualItem = reductionFunction(actualItem, j);
-        System.out.println(actualItem);
+//        System.out.println(actualItem);
       }
-      rainbowbtable[0][i] = actualItem;
+      rainbowbtable[1][i] = actualItem;
     }
   }
 
