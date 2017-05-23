@@ -1,6 +1,6 @@
 import java.math.BigInteger;
-import java.security.*;
-import java.util.Arrays;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 class Main {
   public static String[][] rainbowbtable = new String[2][2000];
@@ -150,7 +150,7 @@ class Main {
 
 
   /**
-   * Raises the passwords chars according to dfinition [0-9][a-z] recursive.
+   * Raises the passwords chars according to definition [0-9][a-z] recursive.
    *
    * @param text inputs the pw to raise.
    * @param pos  char position that has to be risen.
